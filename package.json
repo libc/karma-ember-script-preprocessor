@@ -1,6 +1,6 @@
 {
   "name": "karma-ember-script-preprocessor",
-  "version": "0.1.2.1",
+  "version": "0.1.2",
   "description": "A Karma plugin. Compile ember script on the fly.",
   "main": "index.js",
   "scripts": {
