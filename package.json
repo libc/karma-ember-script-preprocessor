@@ -1,5 +1,5 @@
 {
-  "name": "karma-coffee-preprocessor",
+  "name": "karma-ember-script-preprocessor",
   "version": "0.1.2",
   "description": "A Karma plugin. Compile coffee script on the fly.",
   "main": "index.js",
@@ -13,12 +13,12 @@
   "keywords": [
     "karma-plugin",
     "karma-preprocessor",
-    "coffee-script",
-    "coffee"
+    "ember-script",
+    "ember"
   ],
   "author": "Vojta Jina <vojta.jina@gmail.com>",
   "dependencies": {
-    "coffee-script": "1.6.3"
+    "ember-script": "0.0.12"
   },
   "peerDependencies": {
     "karma": ">=0.9"

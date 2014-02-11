@@ -1,9 +1,9 @@
-var coffee = require('coffee-script');
+var ember = require('ember-script');
 var path = require('path');
-var createCoffeePreprocessor = function(args, config, logger, helper) {
+var createEmberPreprocessor = function(args, config, logger, helper) {
   config = config || {};
 
-  var log = logger.create('preprocessor.coffee');
+  var log = logger.create('preprocessor.ember');
   var defaultOptions = {
     bare: true,
     sourceMap: false
@@ -11,7 +11,7 @@ var createCoffeePreprocessor = function(args, config, logger, helper) {
   var options = helper.merge(defaultOptions, args.options || {}, config.options || {});
 
   var transformPath = args.transformPath || config.transformPath || function(filepath) {
-    return filepath.replace(/\.coffee$/, '.js');
+    return filepath.replace(/\.em/, '.js');
   };
 
   return function(content, file, done) {
@@ -22,13 +22,13 @@ var createCoffeePreprocessor = function(args, config, logger, helper) {
     log.debug('Processing "%s".', file.originalPath);
     file.path = transformPath(file.originalPath);
 
-    // Clone the options because coffee.compile mutates them
+    // Clone the options because ember.compile mutates them
     var opts = helper._.clone(options)
 
     try {
-      result = coffee.compile(content, opts);
+      result = ember.compile(content, opts);
     } catch (e) {
-      log.error('%s\n  at %s:%d', e.message, file.originalPath, e.location.first_line);
+      log.error('%s\n  at %s:%d', e.message, file.originalPath, e.location);
       return;
     }
 
@@ -46,9 +46,9 @@ var createCoffeePreprocessor = function(args, config, logger, helper) {
   };
 };
 
-createCoffeePreprocessor.$inject = ['args', 'config.coffeePreprocessor', 'logger', 'helper'];
+createEmberPreprocessor.$inject = ['args', 'config.emberPreprocessor', 'logger', 'helper'];
 
 // PUBLISH DI MODULE
 module.exports = {
-  'preprocessor:coffee': ['factory', createCoffeePreprocessor]
+  'preprocessor:ember-script': ['factory', createEmberPreprocessor]
 };
