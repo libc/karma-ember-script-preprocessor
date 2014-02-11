@@ -26,7 +26,7 @@ var createEmberPreprocessor = function(args, config, logger, helper) {
     var opts = helper._.clone(options)
 
     try {
-      result = ember.compile(content, opts);
+      result = ember.em2js(content, opts);
     } catch (e) {
       log.error('%s\n  at %s:%d', e.message, file.originalPath, e.location);
       return;
